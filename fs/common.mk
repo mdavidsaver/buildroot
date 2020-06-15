@@ -173,7 +173,7 @@ $$(BINARIES_DIR)/$$(ROOTFS_$(2)_FINAL_IMAGE_NAME): $$(ROOTFS_$(2)_DEPENDENCIES)
 		$$(TARGET_DIR)
 
 	echo '#!/bin/sh' > $$(FAKEROOT_SCRIPT)
-	echo "set -e" >> $$(FAKEROOT_SCRIPT)
+	echo "set -e -x" >> $$(FAKEROOT_SCRIPT)
 
 	echo "chown -h -R 0:0 $$(TARGET_DIR)" >> $$(FAKEROOT_SCRIPT)
 	PATH=$$(BR_PATH) $$(TOPDIR)/support/scripts/mkusers $$(ROOTFS_FULL_USERS_TABLE) $$(TARGET_DIR) >> $$(FAKEROOT_SCRIPT)

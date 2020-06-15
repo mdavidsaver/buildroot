@@ -1,6 +1,7 @@
 #!/bin/bash
 
 set -e
+set -x
 
 BOARD_DIR="$(dirname $0)"
 BOARD_NAME="$(basename ${BOARD_DIR})"
@@ -49,6 +50,8 @@ trap 'rm -rf "${ROOTPATH_TMP}"' EXIT
 ROOTPATH_TMP="$(mktemp -d)"
 
 rm -rf "${GENIMAGE_TMP}"
+
+echo "PATH=$PATH"
 
 genimage \
 	--rootpath "${ROOTPATH_TMP}"   \
