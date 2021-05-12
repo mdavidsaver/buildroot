@@ -1,0 +1,42 @@
+comment "EPICS Base needs MMU, uClibc or glibc, and toolchain w/ threads and C++"
+	depends on BR2_TOOLCHAIN_USES_MUSL
+	depends on !BR2_INSTALL_LIBSTDCPP
+	depends on !BR2_TOOLCHAIN_HAS_THREADS
+	depends on !BR2_USE_MMU
+
+config BR2_PACKAGE_EPICS_BASE
+	bool "EPICS Base"
+	depends on !BR2_TOOLCHAIN_USES_MUSL
+	depends on BR2_INSTALL_LIBSTDCPP
+	depends on BR2_TOOLCHAIN_HAS_THREADS
+	depends on BR2_USE_MMU # fork()
+	select BR2_PACKAGE_READLINE
+	help
+	  Experimental Physics and Industrial Control Systems (EPICS)
+	  core libraries and CLI utilities.
+
+if BR2_PACKAGE_EPICS_BASE
+
+config BR_EPICS_BASE_TARGET
+	string "EPICS Target Arch"
+	default "linux-aarch64" if BR2_aarch64
+	default "linux-arm" if BR2_arm
+	default "linux-microblaze" if BR2_microblazebe
+	default "linux-ppc" if BR2_powerpc
+	default "linux-ppc64" if BR2_powerpc64
+	default "linux-x86" if BR2_i386
+	default "linux-x86_64" if BR2_x86_64
+	help
+	  A name which selects target configuration files in the Base source tree.
+	  
+	  * linux-aarch64
+	  * linux-arm
+	  * linux-microblaze
+	  * linux-ppc
+	  * linux-ppc64
+	  * linux-x86
+	  * linux-x86_64
+	  
+	  See configure/os/CONFIG_SITE.Common.* for full list of valid names.
+
+endif
