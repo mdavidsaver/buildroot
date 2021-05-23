@@ -1,0 +1,7 @@
+if BR2_PACKAGE_EPICS_BASE
+
+config BR2_PACKAGE_EPICS_IOCSTATS
+	bool "IOC stats"
+	depends on BR2_PACKAGE_EPICS_BASE
+
+endif
