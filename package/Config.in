@@ -405,6 +405,7 @@ comment "X window managers"
 endmenu
 
 menu "Hardware handling"
+	source "package/linux_iio_bpm/Config.in"
 menu "Firmware"
 	source "package/am33x-cm3/Config.in"
 	source "package/armbian-firmware/Config.in"
