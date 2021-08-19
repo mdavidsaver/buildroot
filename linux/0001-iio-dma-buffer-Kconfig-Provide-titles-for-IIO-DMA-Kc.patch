@@ -1,0 +1,58 @@
+From 3cd137f591e18588f730a2c53f291d65382050d0 Mon Sep 17 00:00:00 2001
+From: Alexandru Ardelean <alexandru.ardelean@analog.com>
+Date: Thu, 24 Sep 2020 14:17:56 +0300
+Subject: iio: dma-buffer: Kconfig: Provide titles for IIO DMA Kconfig symbols
+
+For some embedded systems, a workflow involving external kernel modules
+that implement IIO devices is more practical than working with in-tree
+sources.
+
+Kconfig symbols without any titles do not show up in menuconfig, and as
+such are more difficult to configure granularly, as they need to be
+selected by potentially unused/un-needed drivers.
+
+This change adds titles to the IIO DMA Kconfig symbols to address this.
+
+This change also updates DMAengine -> DMAEngine, which is the
+correct/nitpick-y name of the framework.
+
+Signed-off-by: Alexandru Ardelean <alexandru.ardelean@analog.com>
+Link: https://lore.kernel.org/r/20200924111758.196367-2-alexandru.ardelean@analog.com
+Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+---
+ drivers/iio/buffer/Kconfig | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/drivers/iio/buffer/Kconfig b/drivers/iio/buffer/Kconfig
+index 63f265c8b466..747d21f84188 100644
+--- a/drivers/iio/buffer/Kconfig
++++ b/drivers/iio/buffer/Kconfig
+@@ -11,7 +11,7 @@ config IIO_BUFFER_CB
+ 	  usage.  That is, those where the data is pushed to the consumer.
+ 
+ config IIO_BUFFER_DMA
+-	tristate
++	tristate "Industrial I/O DMA buffer infrastructure"
+ 	help
+ 	  Provides the generic IIO DMA buffer infrastructure that can be used by
+ 	  drivers for devices with DMA support to implement the IIO buffer.
+@@ -20,13 +20,13 @@ config IIO_BUFFER_DMA
+ 	  infrastructure.
+ 
+ config IIO_BUFFER_DMAENGINE
+-	tristate
++	tristate "Industrial I/O DMA buffer integration with DMAEngine"
+ 	select IIO_BUFFER_DMA
+ 	help
+ 	  Provides a bonding of the generic IIO DMA buffer infrastructure with the
+-	  DMAengine framework. This can be used by converter drivers with a DMA port
++	  DMAEngine framework. This can be used by converter drivers with a DMA port
+ 	  connected to an external DMA controller which is supported by the
+-	  DMAengine framework.
++	  DMAEngine framework.
+ 
+ 	  Should be selected by drivers that want to use this functionality.
+ 
+-- 
+2.20.1
+
